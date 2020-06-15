@@ -14,7 +14,7 @@ const App = () => {
 
   return (<div>
     <button onClick={onAddCircle}>Add circle</button>
-    <button onClick={onAddRectangle}>Add Rectangle</button>
+    <button onClick={onAddRectangle}>Add Rectangle 2</button>
     <FabricJSCanvas className="sample-canvas" onReady={onReady} />
   </div>)
 }

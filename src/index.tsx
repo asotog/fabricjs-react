@@ -19,27 +19,12 @@ const createEditor = (canvas: fabric.Canvas): FabricJSEditor => {
     addCircle: () => {
       const shape = new fabric.Circle(CIRCLE)
       canvas.add(shape)
-      console.log('adding circle')
     },
     addRectangle: () => {
       const shape = new fabric.Rect(RECTANGLE)
       canvas.add(shape)
     }
   }
-}
-
-export const FabricJSCanvas = ({ className, onReady }: Props) => {
-  const canvasEl = useRef(null)
-  useEffect(() => {
-    const canvas = new fabric.Canvas(canvasEl.current)
-    if (onReady) {
-      onReady(createEditor(canvas))
-    }
-    return () => {
-      canvas.dispose()
-    }
-  }, [])
-  return <canvas ref={canvasEl} className={className} />
 }
 
 interface FabricJSEditorState {
@@ -58,4 +43,37 @@ export const useFabricJSCanvas = (): FabricJSEditorHook => {
       setEditorState({ editor })
     }
   }
+}
+
+export const FabricJSCanvas = ({ className, onReady }: Props) => {
+  const canvasEl = useRef(null)
+  const canvasElParent = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const canvas = new fabric.Canvas(canvasEl.current)
+    const setCurrentDimensions = () => {
+      canvas.setHeight(canvasElParent.current?.clientHeight || 0)
+      canvas.setWidth(canvasElParent.current?.clientWidth || 0)
+      canvas.renderAll()
+    }
+    const resizeCanvas = () => {
+      setCurrentDimensions()
+    }
+    setCurrentDimensions()
+
+    window.addEventListener('resize', resizeCanvas, false)
+
+    if (onReady) {
+      onReady(createEditor(canvas))
+    }
+
+    return () => {
+      canvas.dispose()
+      window.removeEventListener('resize', resizeCanvas)
+    }
+  }, [])
+  return (
+    <div ref={canvasElParent} className={className}>
+      <canvas ref={canvasEl} />
+    </div>
+  )
 }
