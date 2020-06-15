@@ -12,6 +12,8 @@ npm install --save fabricjs-react
 
 ## Usage
 
+Take a look at sandbox: https://codesandbox.io/s/flamboyant-wind-ff3x8
+
 ```tsx
 import React from 'react'
 
