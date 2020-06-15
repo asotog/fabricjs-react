@@ -13,16 +13,28 @@ npm install --save fabricjs-react
 ## Usage
 
 ```tsx
-import React, { Component } from 'react'
+import React from 'react'
 
-import MyComponent from 'fabricjs-react'
+import { FabricJSCanvas, useFabricJSCanvas } from 'fabricjs-react'
 import 'fabricjs-react/dist/index.css'
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
+const App = () => {
+  const { editor, onReady } = useFabricJSCanvas()
+  const onAddCircle = () => {
+    editor?.addCircle()
   }
+  const onAddRectangle = () => {
+    editor?.addRectangle()
+  }
+
+  return (<div>
+    <button onClick={onAddCircle}>Add circle</button>
+    <button onClick={onAddRectangle}>Add Rectangle</button>
+    <FabricJSCanvas className="sample-canvas" onReady={onReady} />
+  </div>)
 }
+
+export default App
 ```
 
 ## License
