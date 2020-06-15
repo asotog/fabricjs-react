@@ -16,7 +16,6 @@ npm install --save fabricjs-react
 import React from 'react'
 
 import { FabricJSCanvas, useFabricJSCanvas } from 'fabricjs-react'
-import 'fabricjs-react/dist/index.css'
 
 const App = () => {
   const { editor, onReady } = useFabricJSCanvas()
