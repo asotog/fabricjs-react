@@ -13,27 +13,37 @@ export interface FabricJSEditor {
   addRectangle: () => void
   addLine: () => void
   addText: (text: string) => void
+  deleteAll: () => void
+  deleteSelected: () => void
 }
 
 const createEditor = (canvas: fabric.Canvas): FabricJSEditor => {
   return {
     canvas,
     addCircle: () => {
-      const shape = new fabric.Circle(CIRCLE)
-      canvas.add(shape)
+      const object = new fabric.Circle(CIRCLE)
+      canvas.add(object)
     },
     addRectangle: () => {
-      const shape = new fabric.Rect(RECTANGLE)
-      canvas.add(shape)
+      const object = new fabric.Rect(RECTANGLE)
+      canvas.add(object)
     },
     addLine: () => {
-      const shape = new fabric.Line(LINE.points, LINE.options)
-      canvas.add(shape)
+      const object = new fabric.Line(LINE.points, LINE.options)
+      canvas.add(object)
     },
     addText: (text: string) => {
-      const shape = new fabric.Text(text, TEXT)
-      shape.set({ text: text })
-      canvas.add(shape)
+      const object = new fabric.Text(text, TEXT)
+      object.set({ text: text })
+      canvas.add(object)
+    },
+    deleteAll: () => {
+      canvas.getObjects().forEach((object) => canvas.remove(object))
+      canvas.discardActiveObject()
+      canvas.renderAll()
+    },
+    deleteSelected: () => {
+      return;
     }
   }
 }

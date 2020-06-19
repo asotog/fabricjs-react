@@ -18,11 +18,15 @@ const App = () => {
   const onAddText = () => {
     editor?.addText(text);
   }
+  const onClean = () => {
+    editor?.deleteAll();
+  }
 
   return (<div>
     <button onClick={onAddCircle}>Add circle</button>
     <button onClick={onAddRectangle}>Add Rectangle</button>
     <button onClick={onAddLine}>Add Line</button>
+    <button onClick={onClean}>Clean</button>
     <input
       type="text"
       value={text}
