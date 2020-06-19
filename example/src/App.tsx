@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { FabricJSCanvas, useFabricJSCanvas } from 'fabricjs-react'
 
 const App = () => {
-  const { editor, onReady } = useFabricJSCanvas()
+  const { selectedObjects, editor, onReady } = useFabricJSCanvas()
   const [text, setText] = useState("");
 
   const onAddCircle = () => {
@@ -33,6 +33,7 @@ const App = () => {
       onChange={e => setText(e.target.value)}
     />
     <button onClick={onAddText}>Add Text</button>
+    <pre>{JSON.stringify(selectedObjects)}</pre>
     <FabricJSCanvas className="sample-canvas" onReady={onReady} />
   </div>)
 }

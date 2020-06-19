@@ -1,51 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { fabric } from 'fabric'
-import { CIRCLE, RECTANGLE, LINE, TEXT } from './defaultShapes'
+import { buildEditor, FabricJSEditor } from './editor'
 
 export interface Props {
   className?: string
   onReady?: (editor: FabricJSEditor) => void
-}
-
-export interface FabricJSEditor {
-  canvas: fabric.Canvas
-  addCircle: () => void
-  addRectangle: () => void
-  addLine: () => void
-  addText: (text: string) => void
-  deleteAll: () => void
-  deleteSelected: () => void
-}
-
-const createEditor = (canvas: fabric.Canvas): FabricJSEditor => {
-  return {
-    canvas,
-    addCircle: () => {
-      const object = new fabric.Circle(CIRCLE)
-      canvas.add(object)
-    },
-    addRectangle: () => {
-      const object = new fabric.Rect(RECTANGLE)
-      canvas.add(object)
-    },
-    addLine: () => {
-      const object = new fabric.Line(LINE.points, LINE.options)
-      canvas.add(object)
-    },
-    addText: (text: string) => {
-      const object = new fabric.Text(text, TEXT)
-      object.set({ text: text })
-      canvas.add(object)
-    },
-    deleteAll: () => {
-      canvas.getObjects().forEach((object) => canvas.remove(object))
-      canvas.discardActiveObject()
-      canvas.renderAll()
-    },
-    deleteSelected: () => {
-      return;
-    }
-  }
 }
 
 interface FabricJSEditorState {
@@ -53,20 +12,45 @@ interface FabricJSEditorState {
 }
 
 interface FabricJSEditorHook extends FabricJSEditorState {
+  selectedObjects?: fabric.Object[]
   onReady: (editor: FabricJSEditor) => void
 }
 
-export const useFabricJSCanvas = (): FabricJSEditorHook => {
+const useFabricJSCanvas = (): FabricJSEditorHook => {
   const [editorState, setEditorState] = useState<FabricJSEditorState>({})
+  const [selectedObjects, setSelectedObject] = useState<fabric.Object[]>([])
+  const { editor } = editorState
+  useEffect(() => {
+    const bindEvents = (canvas: fabric.Canvas) => {
+      canvas.on('selection:cleared', () => {
+        setSelectedObject([])
+      })
+      canvas.on('selection:created', (e: any) => {
+        setSelectedObject(e.selected)
+      })
+      canvas.on('selection:updated', (e: any) => {
+        setSelectedObject(e.selected)
+      })
+    }
+    if (editor) {
+      bindEvents(editor.canvas)
+    }
+  }, [editor])
+
   return {
-    editor: editorState.editor,
+    editor,
+    selectedObjects,
     onReady: (editor: FabricJSEditor): void => {
+      console.log('editor ready')
       setEditorState({ editor })
     }
   }
 }
 
-export const FabricJSCanvas = ({ className, onReady }: Props) => {
+/**
+ * Fabric canvas as component
+ */
+const FabricJSCanvas = ({ className, onReady }: Props) => {
   const canvasEl = useRef(null)
   const canvasElParent = useRef<HTMLDivElement>(null)
   useEffect(() => {
@@ -84,7 +68,7 @@ export const FabricJSCanvas = ({ className, onReady }: Props) => {
     window.addEventListener('resize', resizeCanvas, false)
 
     if (onReady) {
-      onReady(createEditor(canvas))
+      onReady(buildEditor(canvas))
     }
 
     return () => {
@@ -98,3 +82,5 @@ export const FabricJSCanvas = ({ className, onReady }: Props) => {
     </div>
   )
 }
+
+export { FabricJSEditor, FabricJSCanvas, FabricJSEditorHook, useFabricJSCanvas }
