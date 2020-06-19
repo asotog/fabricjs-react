@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { fabric } from 'fabric'
-import { CIRCLE, RECTANGLE } from './defaultShapes'
+import { CIRCLE, RECTANGLE, LINE, TEXT } from './defaultShapes'
 
 export interface Props {
   className?: string
@@ -11,6 +11,8 @@ export interface FabricJSEditor {
   canvas: fabric.Canvas
   addCircle: () => void
   addRectangle: () => void
+  addLine: () => void
+  addText: (text: string) => void
 }
 
 const createEditor = (canvas: fabric.Canvas): FabricJSEditor => {
@@ -22,6 +24,15 @@ const createEditor = (canvas: fabric.Canvas): FabricJSEditor => {
     },
     addRectangle: () => {
       const shape = new fabric.Rect(RECTANGLE)
+      canvas.add(shape)
+    },
+    addLine: () => {
+      const shape = new fabric.Line(LINE.points, LINE.options)
+      canvas.add(shape)
+    },
+    addText: (text: string) => {
+      const shape = new fabric.Text(text, TEXT)
+      shape.set({ text: text })
       canvas.add(shape)
     }
   }
