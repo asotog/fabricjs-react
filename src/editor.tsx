@@ -10,6 +10,8 @@ export interface FabricJSEditor {
   updateText: (text: string) => void
   deleteAll: () => void
   deleteSelected: () => void
+  fillColor: string
+  strokeColor: string
   setFillColor: (color: string) => void
   setStrokeColor: (color: string) => void
 }
@@ -71,8 +73,18 @@ const buildEditor = (
       canvas.discardActiveObject()
       canvas.renderAll()
     },
-    setFillColor: _setFillColor,
-    setStrokeColor: _setStrokeColor
+    fillColor,
+    strokeColor,
+    setFillColor: (fill: string) => {
+      _setFillColor(fill)
+      canvas.getActiveObjects().forEach((object) => object.set({ fill }))
+      canvas.renderAll()
+    },
+    setStrokeColor: (stroke: string) => {
+      _setStrokeColor(stroke)
+      canvas.getActiveObjects().forEach((object) => object.set({ stroke }))
+      canvas.renderAll()
+    }
   }
 }
 
@@ -120,6 +132,7 @@ const useFabricJSEditor = (
   return {
     selectedObjects,
     onReady: (canvasReady: fabric.Canvas): void => {
+      console.log('Fabric canvas ready')
       setCanvas(canvasReady)
     },
     editor: canvas
@@ -127,8 +140,8 @@ const useFabricJSEditor = (
           canvas,
           fillColor,
           strokeColor,
-          setStrokeColor,
-          setFillColor
+          setFillColor,
+          setStrokeColor
         )
       : undefined
   }
