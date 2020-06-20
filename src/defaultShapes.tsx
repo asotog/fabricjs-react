@@ -29,6 +29,7 @@ export const LINE = {
 }
 
 export const TEXT = {
+  type: 'text',
   left: 100,
   top: 100,
   fontSize: 16,

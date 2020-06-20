@@ -16,6 +16,9 @@ const App = () => {
     editor?.addLine()
   }
   const onAddText = () => {
+    if (selectedObjects?.length) {
+      return editor?.updateText(text)
+    }
     editor?.addText(text);
   }
   const onDeleteAll = () => {
