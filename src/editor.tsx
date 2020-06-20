@@ -1,8 +1,8 @@
 import { fabric } from 'fabric'
 import { CIRCLE, RECTANGLE, LINE, TEXT } from './defaultShapes'
+import { useEffect, useState } from 'react'
 
 export interface FabricJSEditor {
-  canvas: fabric.Canvas
   addCircle: () => void
   addRectangle: () => void
   addLine: () => void
@@ -17,7 +17,6 @@ export interface FabricJSEditor {
  */
 const buildEditor = (canvas: fabric.Canvas): FabricJSEditor => {
   return {
-    canvas,
     addCircle: () => {
       const object = new fabric.Circle(CIRCLE)
       canvas.add(object)
@@ -36,7 +35,7 @@ const buildEditor = (canvas: fabric.Canvas): FabricJSEditor => {
       canvas.add(object)
     },
     updateText: (text: string) => {
-      const objects: any[] = canvas.getObjects()
+      const objects: any[] = canvas.getActiveObjects()
       if (objects.length && objects[0].type === TEXT.type) {
         const textObject: fabric.Text = objects[0]
         textObject.set({ text })
@@ -56,4 +55,42 @@ const buildEditor = (canvas: fabric.Canvas): FabricJSEditor => {
   }
 }
 
-export { buildEditor }
+interface FabricJSEditorState {
+  editor?: FabricJSEditor
+}
+
+interface FabricJSEditorHook extends FabricJSEditorState {
+  selectedObjects?: fabric.Object[]
+  onReady: (canvas: fabric.Canvas) => void
+}
+
+const useFabricJSEditor = (): FabricJSEditorHook => {
+  const [canvas, setCanvas] = useState<null | fabric.Canvas>(null)
+  const [selectedObjects, setSelectedObject] = useState<fabric.Object[]>([])
+  useEffect(() => {
+    const bindEvents = (canvas: fabric.Canvas) => {
+      canvas.on('selection:cleared', () => {
+        setSelectedObject([])
+      })
+      canvas.on('selection:created', (e: any) => {
+        setSelectedObject(e.selected)
+      })
+      canvas.on('selection:updated', (e: any) => {
+        setSelectedObject(e.selected)
+      })
+    }
+    if (canvas) {
+      bindEvents(canvas)
+    }
+  }, [canvas])
+
+  return {
+    selectedObjects,
+    onReady: (canvasReady: fabric.Canvas): void => {
+      setCanvas(canvasReady)
+    },
+    editor: canvas ? buildEditor(canvas) : undefined
+  }
+}
+
+export { buildEditor, useFabricJSEditor, FabricJSEditorHook }
