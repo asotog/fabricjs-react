@@ -16,7 +16,7 @@ interface FabricJSEditorHook extends FabricJSEditorState {
   onReady: (editor: FabricJSEditor) => void
 }
 
-const useFabricJSCanvas = (): FabricJSEditorHook => {
+const useFabricJSEditor = (): FabricJSEditorHook => {
   const [editorState, setEditorState] = useState<FabricJSEditorState>({})
   const [selectedObjects, setSelectedObject] = useState<fabric.Object[]>([])
   const { editor } = editorState
@@ -83,4 +83,4 @@ const FabricJSCanvas = ({ className, onReady }: Props) => {
   )
 }
 
-export { FabricJSEditor, FabricJSCanvas, FabricJSEditorHook, useFabricJSCanvas }
+export { FabricJSEditor, FabricJSCanvas, FabricJSEditorHook, useFabricJSEditor }

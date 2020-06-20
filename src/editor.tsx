@@ -41,7 +41,9 @@ const buildEditor = (canvas: fabric.Canvas): FabricJSEditor => {
       canvas.renderAll()
     },
     deleteSelected: () => {
-      return;
+      canvas.getActiveObjects().forEach((object) => canvas.remove(object))
+      canvas.discardActiveObject()
+      canvas.renderAll()
     }
   }
 }

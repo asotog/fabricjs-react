@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 
-import { FabricJSCanvas, useFabricJSCanvas } from 'fabricjs-react'
+import { FabricJSCanvas, useFabricJSEditor } from 'fabricjs-react'
 
 const App = () => {
-  const { selectedObjects, editor, onReady } = useFabricJSCanvas()
+  const { selectedObjects, editor, onReady } = useFabricJSEditor()
   const [text, setText] = useState("");
 
   const onAddCircle = () => {
@@ -18,15 +18,19 @@ const App = () => {
   const onAddText = () => {
     editor?.addText(text);
   }
-  const onClean = () => {
+  const onDeleteAll = () => {
     editor?.deleteAll();
+  }
+  const onDeleteSelected = () => {
+    editor?.deleteSelected();
   }
 
   return (<div>
     <button onClick={onAddCircle}>Add circle</button>
     <button onClick={onAddRectangle}>Add Rectangle</button>
     <button onClick={onAddLine}>Add Line</button>
-    <button onClick={onClean}>Clean</button>
+    <button onClick={onDeleteAll}>Delete All</button>
+    <button onClick={onDeleteSelected}>Delete Selected</button>
     <input
       type="text"
       value={text}
