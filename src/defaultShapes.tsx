@@ -1,19 +1,19 @@
-const stroke = '#000000'
-const fill = 'rgba(255, 255, 255, 0.0)'
+export const STROKE = '#000000'
+export const FILL = 'rgba(255, 255, 255, 0.0)'
 
 export const CIRCLE = {
   radius: 20,
   left: 100,
   top: 100,
-  fill,
-  stroke
+  fill: FILL,
+  stroke: STROKE
 }
 
 export const RECTANGLE = {
   left: 100,
   top: 100,
-  fill,
-  stroke,
+  fill: FILL,
+  stroke: STROKE,
   width: 40,
   height: 40,
   angle: 0
@@ -24,7 +24,7 @@ export const LINE = {
   options: {
     left: 170,
     top: 150,
-    stroke
+    stroke: STROKE
   }
 }
 
@@ -33,5 +33,5 @@ export const TEXT = {
   left: 100,
   top: 100,
   fontSize: 16,
-  fill: stroke
+  fill: STROKE
 }

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { FabricJSCanvas, useFabricJSEditor } from 'fabricjs-react'
 
 const App = () => {
-  const { selectedObjects, editor, onReady } = useFabricJSEditor()
+  const { selectedObjects, editor, onReady } = useFabricJSEditor({ defaultStrokeColor: 'red' })
   const [text, setText] = useState("");
 
   const onAddCircle = () => {
