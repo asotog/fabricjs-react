@@ -97,14 +97,12 @@ const buildEditor = (
       canvas.renderAll()
     },
     zoomIn: () => {
-      let zoom = canvas.getZoom()
-      zoom += scaleStep
-      canvas.setZoom(zoom)
+      const zoom = canvas.getZoom()
+      canvas.setZoom(zoom / scaleStep)
     },
     zoomOut: () => {
-      let zoom = canvas.getZoom()
-      zoom -= scaleStep
-      canvas.setZoom(zoom)
+      const zoom = canvas.getZoom()
+      canvas.setZoom(zoom * scaleStep)
     }
   }
 }
