@@ -51,6 +51,7 @@ const buildEditor = (
       canvas.add(object)
     },
     addText: (text: string) => {
+      // use stroke in text fill, fill default is most of the time transparent
       const object = new fabric.Textbox(text, { ...TEXT, fill: strokeColor })
       object.set({ text: text })
       canvas.add(object)
@@ -82,7 +83,14 @@ const buildEditor = (
     },
     setStrokeColor: (stroke: string) => {
       _setStrokeColor(stroke)
-      canvas.getActiveObjects().forEach((object) => object.set({ stroke }))
+      canvas.getActiveObjects().forEach((object) => {
+        if (object.type === TEXT.type) {
+          // use stroke in text fill
+          object.set({ fill: stroke })
+          return
+        }
+        object.set({ stroke })
+      })
       canvas.renderAll()
     }
   }
