@@ -51,14 +51,14 @@ const buildEditor = (
       canvas.add(object)
     },
     addText: (text: string) => {
-      const object = new fabric.Text(text, { ...TEXT, fill: strokeColor })
+      const object = new fabric.Textbox(text, { ...TEXT, fill: strokeColor })
       object.set({ text: text })
       canvas.add(object)
     },
     updateText: (text: string) => {
       const objects: any[] = canvas.getActiveObjects()
       if (objects.length && objects[0].type === TEXT.type) {
-        const textObject: fabric.Text = objects[0]
+        const textObject: fabric.Textbox = objects[0]
         textObject.set({ text })
         canvas.renderAll()
       }
