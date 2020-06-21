@@ -35,9 +35,17 @@ const App = () => {
   const onDeleteSelected = () => {
     editor?.deleteSelected();
   }
+  const onZoomIn = () => {
+    editor?.zoomIn()
+  }
+  const onZoomOut = () => {
+    editor?.zoomOut()
+  }
   return (
     <>
       {editor ? (<div>
+        <button onClick={onZoomIn}>Zoom In</button>
+        <button onClick={onZoomOut}>Zoom Out</button>
         <button onClick={onAddCircle}>Add circle</button>
         <button onClick={onAddRectangle}>Add Rectangle</button>
         <button onClick={onAddLine}>Add Line</button>

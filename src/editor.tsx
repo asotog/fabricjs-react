@@ -14,6 +14,8 @@ export interface FabricJSEditor {
   strokeColor: string
   setFillColor: (color: string) => void
   setStrokeColor: (color: string) => void
+  zoomIn: () => void
+  zoomOut: () => void
 }
 
 /**
@@ -24,7 +26,8 @@ const buildEditor = (
   fillColor: string,
   strokeColor: string,
   _setFillColor: (color: string) => void,
-  _setStrokeColor: (color: string) => void
+  _setStrokeColor: (color: string) => void,
+  scaleStep: number
 ): FabricJSEditor => {
   return {
     addCircle: () => {
@@ -92,6 +95,16 @@ const buildEditor = (
         object.set({ stroke })
       })
       canvas.renderAll()
+    },
+    zoomIn: () => {
+      let zoom = canvas.getZoom()
+      zoom += scaleStep
+      canvas.setZoom(zoom)
+    },
+    zoomOut: () => {
+      let zoom = canvas.getZoom()
+      zoom -= scaleStep
+      canvas.setZoom(zoom)
     }
   }
 }
@@ -108,11 +121,13 @@ interface FabricJSEditorHook extends FabricJSEditorState {
 interface FabricJSEditorHookProps {
   defaultFillColor?: string
   defaultStrokeColor?: string
+  scaleStep?: number
 }
 
 const useFabricJSEditor = (
   props: FabricJSEditorHookProps = {}
 ): FabricJSEditorHook => {
+  const scaleStep = props.scaleStep || 0.5
   const { defaultFillColor, defaultStrokeColor } = props
   const [canvas, setCanvas] = useState<null | fabric.Canvas>(null)
   const [fillColor, setFillColor] = useState<string>(defaultFillColor || FILL)
@@ -149,7 +164,8 @@ const useFabricJSEditor = (
           fillColor,
           strokeColor,
           setFillColor,
-          setStrokeColor
+          setStrokeColor,
+          scaleStep
         )
       : undefined
   }
