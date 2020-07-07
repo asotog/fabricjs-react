@@ -3,6 +3,7 @@ import { CIRCLE, RECTANGLE, LINE, TEXT, FILL, STROKE } from './defaultShapes'
 import { useEffect, useState } from 'react'
 
 export interface FabricJSEditor {
+  canvas: fabric.Canvas,
   addCircle: () => void
   addRectangle: () => void
   addLine: () => void
@@ -30,6 +31,7 @@ const buildEditor = (
   scaleStep: number
 ): FabricJSEditor => {
   return {
+    canvas,
     addCircle: () => {
       const object = new fabric.Circle({
         ...CIRCLE,
