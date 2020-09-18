@@ -17,10 +17,10 @@ Take a look at sandbox: https://codesandbox.io/s/flamboyant-wind-ff3x8
 ```tsx
 import React from 'react'
 
-import { FabricJSCanvas, useFabricJSCanvas } from 'fabricjs-react'
+import { FabricJSCanvas, useFabricJSEditor } from 'fabricjs-react'
 
 const App = () => {
-  const { editor, onReady } = useFabricJSCanvas()
+  const { editor, onReady } = useFabricJSEditor()
   const onAddCircle = () => {
     editor?.addCircle()
   }
@@ -41,3 +41,5 @@ export default App
 ## License
 
 MIT © [Alejandro Soto](https://github.com/Alejandro Soto)
+
+Feel free to collaborate.
