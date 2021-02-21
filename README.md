@@ -6,8 +6,9 @@
 
 ## Install
 
+We'll need to install `fabric`, `react` and `react-dom` because are peer dependencies of this library if you haven't yet otherwise install only what you don't have:
 ```bash
-npm install --save fabricjs-react
+npm install --save fabricjs-react fabric react react-dom
 ```
 
 ## Usage
@@ -38,6 +39,21 @@ const App = () => {
 export default App
 ```
 
+## Alternative use cases
+
+### Add image ([#3](https://github.com/asotog/fabricjs-react/issues/3))
+For this case, you have to reference the FabricJS dependency to first load the image:
+
+```tsx
+import { fabric } from 'fabric'; // this also installed on your project
+import { useFabricJSEditor } from 'fabricjs-react';
+
+const { selectedObjects, editor, onReady } = useFabricJSEditor();
+fabric.Image.fromURL('my_image.png', function(oImg) { 
+    editor.canvas.add( ... )
+})
+...
+```
 ## License
 
 MIT © [Alejandro Soto](https://github.com/Alejandro Soto)

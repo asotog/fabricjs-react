@@ -1,6 +1,6 @@
 {
   "name": "fabricjs-react",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "support fabricjs from react",
   "author": "Alejandro Soto",
   "license": "MIT",
@@ -24,8 +24,9 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
-    "react": "^16.0.0",
-    "fabric": "^3.6.3"
+    "fabric": "^4.3.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -54,12 +55,11 @@
     "microbundle-crl": "^0.13.10",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1",
     "typescript": "^3.7.5"
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {}
 }
