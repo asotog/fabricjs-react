@@ -61,3 +61,7 @@ useEffect(() => {
 MIT © [Alejandro Soto](https://github.com/Alejandro Soto)
 
 Feel free to collaborate.
+
+## Some Support
+
+https://www.buymeacoffee.com/alecode
