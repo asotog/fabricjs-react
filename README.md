@@ -49,9 +49,11 @@ import { fabric } from 'fabric'; // this also installed on your project
 import { useFabricJSEditor } from 'fabricjs-react';
 
 const { selectedObjects, editor, onReady } = useFabricJSEditor();
-fabric.Image.fromURL('my_image.png', function(oImg) { 
-    editor.canvas.add( ... )
-})
+useEffect(() => {
+  fabric.Image.fromURL('my_image.png', function (oImg) {
+    editor?.canvas.add(oImg);
+  });
+}, [fabric, editor])
 ...
 ```
 ## License
