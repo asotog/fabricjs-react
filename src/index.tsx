@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { fabric } from 'fabric'
 import { useFabricJSEditor, FabricJSEditor, FabricJSEditorHook } from './editor'
 
