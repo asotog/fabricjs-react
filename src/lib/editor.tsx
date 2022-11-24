@@ -171,4 +171,5 @@ const useFabricJSEditor = (
   }
 }
 
-export { buildEditor, useFabricJSEditor, FabricJSEditorHook }
+export { buildEditor, useFabricJSEditor }
+export type { FabricJSEditorHook }
