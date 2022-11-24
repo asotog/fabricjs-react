@@ -29,11 +29,13 @@ const App = () => {
     editor?.addRectangle()
   }
 
-  return (<div>
-    <button onClick={onAddCircle}>Add circle</button>
-    <button onClick={onAddRectangle}>Add Rectangle</button>
-    <FabricJSCanvas className="sample-canvas" onReady={onReady} />
-  </div>)
+  return (
+    <div>
+      <button onClick={onAddCircle}>Add circle</button>
+      <button onClick={onAddRectangle}>Add Rectangle</button>
+      <FabricJSCanvas className="sample-canvas" onReady={onReady} />
+    </div>
+  )
 }
 
 export default App
