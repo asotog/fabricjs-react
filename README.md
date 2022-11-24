@@ -1,8 +1,10 @@
 # fabricjs-react
 
-> support fabricjs from react
 
 [![NPM](https://img.shields.io/npm/v/fabricjs-react.svg)](https://www.npmjs.com/package/fabricjs-react) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
+## Donations
+<a href="https://www.buymeacoffee.com/alecode" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
 ## Install
 
@@ -64,6 +66,5 @@ MIT © [Alejandro Soto](https://github.com/Alejandro Soto)
 
 Feel free to collaborate.
 
-## Some Support
-<a href="https://www.buymeacoffee.com/alecode" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
 
