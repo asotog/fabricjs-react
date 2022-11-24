@@ -5,6 +5,8 @@
   "author": "Alejandro Soto",
   "license": "MIT",
   "type": "module",
+  "main": "./dist/fabricjs-react.umd.js",
+  "module": "./dist/fabricjs-react.es.js",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
