@@ -43,4 +43,5 @@ const FabricJSCanvas = ({ className, onReady }: Props) => {
   )
 }
 
-export { FabricJSEditor, FabricJSCanvas, FabricJSEditorHook, useFabricJSEditor }
+export { FabricJSCanvas, useFabricJSEditor }
+export type { FabricJSEditor, FabricJSEditorHook }

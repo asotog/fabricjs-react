@@ -1,8 +1,7 @@
 import { useState } from 'react'
+import { FabricJSCanvas, useFabricJSEditor } from './lib'
 
-import { FabricJSCanvas, useFabricJSEditor } from 'fabricjs-react'
-
-const App = () => {
+function App() {
   const { selectedObjects, editor, onReady } = useFabricJSEditor({
     defaultStrokeColor: 'red'
   })
