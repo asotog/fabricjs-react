@@ -3,9 +3,6 @@
 
 [![NPM](https://img.shields.io/npm/v/fabricjs-react.svg)](https://www.npmjs.com/package/fabricjs-react) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-## Donations
-<a href="https://www.buymeacoffee.com/alecode" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
-
 ## Install
 
 We'll need to install `fabric`, `react` and `react-dom` because are peer dependencies of this library if you haven't yet otherwise install only what you don't have:
@@ -60,6 +57,11 @@ useEffect(() => {
 }, [fabric, editor])
 ...
 ```
+
+
+## Donations
+<a href="https://www.buymeacoffee.com/alecode" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
 ## License
 
 MIT © [Alejandro Soto](https://github.com/Alejandro Soto)
