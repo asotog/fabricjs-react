@@ -14,7 +14,8 @@
   "exports": {
     ".": {
       "import": "./dist/fabricjs-react.es.js",
-      "require": "./dist/fabricjs-react.umd.js"
+      "require": "./dist/fabricjs-react.umd.js",
+      "types": "./dist/index.d.ts"
     }
   },
   "scripts": {
