@@ -1,23 +1,6 @@
 import { fabric } from 'fabric'
 import { CIRCLE, RECTANGLE, LINE, TEXT, FILL, STROKE } from './defaultShapes'
-import { useEffect, useState } from 'react'
-
-export interface FabricJSEditor {
-  canvas: fabric.Canvas
-  addCircle: () => void
-  addRectangle: () => void
-  addLine: () => void
-  addText: (text: string) => void
-  updateText: (text: string) => void
-  deleteAll: () => void
-  deleteSelected: () => void
-  fillColor: string
-  strokeColor: string
-  setFillColor: (color: string) => void
-  setStrokeColor: (color: string) => void
-  zoomIn: () => void
-  zoomOut: () => void
-}
+import { useEffect, useMemo, useState } from 'react'
 
 /**
  * Creates editor
@@ -109,21 +92,6 @@ const buildEditor = (
   }
 }
 
-interface FabricJSEditorState {
-  editor?: FabricJSEditor
-}
-
-interface FabricJSEditorHook extends FabricJSEditorState {
-  selectedObjects?: fabric.Object[]
-  onReady: (canvas: fabric.Canvas) => void
-}
-
-interface FabricJSEditorHookProps {
-  defaultFillColor?: string
-  defaultStrokeColor?: string
-  scaleStep?: number
-}
-
 const useFabricJSEditor = (
   props: FabricJSEditorHookProps = {}
 ): FabricJSEditorHook => {
@@ -152,24 +120,61 @@ const useFabricJSEditor = (
     }
   }, [canvas])
 
+  const editor = useMemo(
+    () =>
+      canvas
+        ? buildEditor(
+            canvas,
+            fillColor,
+            strokeColor,
+            setFillColor,
+            setStrokeColor,
+            scaleStep
+          )
+        : undefined,
+    [canvas]
+  )
   return {
     selectedObjects,
     onReady: (canvasReady: fabric.Canvas): void => {
       console.log('Fabric canvas ready')
       setCanvas(canvasReady)
     },
-    editor: canvas
-      ? buildEditor(
-          canvas,
-          fillColor,
-          strokeColor,
-          setFillColor,
-          setStrokeColor,
-          scaleStep
-        )
-      : undefined
+    editor
   }
 }
 
 export { buildEditor, useFabricJSEditor }
 export type { FabricJSEditorHook }
+
+export interface FabricJSEditor {
+  canvas: fabric.Canvas
+  addCircle: () => void
+  addRectangle: () => void
+  addLine: () => void
+  addText: (text: string) => void
+  updateText: (text: string) => void
+  deleteAll: () => void
+  deleteSelected: () => void
+  fillColor: string
+  strokeColor: string
+  setFillColor: (color: string) => void
+  setStrokeColor: (color: string) => void
+  zoomIn: () => void
+  zoomOut: () => void
+}
+
+interface FabricJSEditorState {
+  editor?: FabricJSEditor
+}
+
+interface FabricJSEditorHook extends FabricJSEditorState {
+  selectedObjects?: fabric.Object[]
+  onReady: (canvas: fabric.Canvas) => void
+}
+
+interface FabricJSEditorHookProps {
+  defaultFillColor?: string
+  defaultStrokeColor?: string
+  scaleStep?: number
+}

@@ -1,10 +1,13 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FabricJSCanvas, useFabricJSEditor } from './lib'
 
 function App() {
   const { selectedObjects, editor, onReady } = useFabricJSEditor({
     defaultStrokeColor: 'red'
   })
+  useEffect(() => {
+    console.log({ editor })
+  }, [editor])
   const [text, setText] = useState('')
   const [strokeColor, setStrokeColor] = useState('')
   const [fillColor, setFillColor] = useState('')
