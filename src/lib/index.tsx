@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { fabric } from 'fabric'
+import * as fabric from 'fabric'
 import { useFabricJSEditor, FabricJSEditor, FabricJSEditorHook } from './editor'
 
 export interface Props {
@@ -11,10 +11,10 @@ export interface Props {
  * Fabric canvas as component
  */
 const FabricJSCanvas = ({ className, onReady }: Props) => {
-  const canvasEl = useRef(null)
+  const canvasEl = useRef<HTMLCanvasElement>(null)
   const canvasElParent = useRef<HTMLDivElement>(null)
   useEffect(() => {
-    const canvas = new fabric.Canvas(canvasEl.current)
+    const canvas = new fabric.Canvas(canvasEl.current ?? undefined)
     const setCurrentDimensions = () => {
       canvas.setHeight(canvasElParent.current?.clientHeight || 0)
       canvas.setWidth(canvasElParent.current?.clientWidth || 0)

@@ -1,4 +1,4 @@
-import { fabric } from 'fabric'
+import * as fabric from 'fabric'
 import { CIRCLE, RECTANGLE, LINE, TEXT, FILL, STROKE } from './defaultShapes'
 import { useEffect, useMemo, useState } from 'react'
 
