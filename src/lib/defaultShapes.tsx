@@ -1,3 +1,5 @@
+import { DefaultLine } from './types'
+
 export const STROKE = '#000000'
 export const FILL = 'rgba(255, 255, 255, 0.0)'
 
@@ -19,7 +21,7 @@ export const RECTANGLE = {
   angle: 0
 }
 
-export const LINE = {
+export const LINE: DefaultLine = {
   points: [50, 100, 200, 200],
   options: {
     left: 170,

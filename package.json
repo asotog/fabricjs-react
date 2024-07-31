@@ -1,6 +1,6 @@
 {
   "name": "fabricjs-react",
-  "version": "1.2.2",
+  "version": "2.0.0",
   "description": "support fabricjs from react",
   "author": "Alejandro Soto",
   "license": "MIT",
@@ -23,13 +23,13 @@
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
-  "dependencies": {
-    "fabric": "^5.3.0",
+  "peerDependencies": {
+    "fabric": "^5 || ^6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/fabric": "^4.5.12",
+    "@types/fabric": "^5.3.7",
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
@@ -41,5 +41,8 @@
   },
   "bugs": {
     "url": "https://github.com/asotog/fabricjs-react/issues"
+  },
+  "engines": {
+    "node": "20"
   }
 }
