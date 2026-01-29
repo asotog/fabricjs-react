@@ -16,8 +16,10 @@ const FabricJSCanvas = ({ className, onReady }: Props) => {
   useEffect(() => {
     const canvas = new fabric.Canvas(canvasEl.current ?? undefined)
     const setCurrentDimensions = () => {
-      canvas.setHeight(canvasElParent.current?.clientHeight || 0)
-      canvas.setWidth(canvasElParent.current?.clientWidth || 0)
+      canvas.setDimensions({
+        width: canvasElParent.current?.clientWidth || 0,
+        height: canvasElParent.current?.clientHeight || 0
+      })
       canvas.renderAll()
     }
     const resizeCanvas = () => {

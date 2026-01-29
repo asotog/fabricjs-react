@@ -1,6 +1,6 @@
 {
   "name": "fabricjs-react",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "support fabricjs from react",
   "author": "Alejandro Soto",
   "license": "MIT",
@@ -22,7 +22,7 @@
     }
   },
   "peerDependencies": {
-    "fabric": "^5 || ^6",
+    "fabric": "^5 || ^6 || ^7",
     "react": ">=18.2.0",
     "react-dom": ">=18.2.0"
   },

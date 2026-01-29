@@ -8,7 +8,9 @@ export const CIRCLE = {
   left: 100,
   top: 100,
   fill: FILL,
-  stroke: STROKE
+  stroke: STROKE,
+  originX: 'left' as const,
+  originY: 'top' as const
 }
 
 export const RECTANGLE = {
@@ -18,7 +20,9 @@ export const RECTANGLE = {
   stroke: STROKE,
   width: 40,
   height: 40,
-  angle: 0
+  angle: 0,
+  originX: 'left' as const,
+  originY: 'top' as const
 }
 
 export const LINE: DefaultLine = {
@@ -26,7 +30,9 @@ export const LINE: DefaultLine = {
   options: {
     left: 170,
     top: 150,
-    stroke: STROKE
+    stroke: STROKE,
+    originX: 'left' as const,
+    originY: 'top' as const
   }
 }
 
@@ -36,5 +42,7 @@ export const TEXT = {
   top: 100,
   fontSize: 16,
   fontFamily: 'Arial',
-  fill: STROKE
+  fill: STROKE,
+  originX: 'left' as const,
+  originY: 'top' as const
 }
